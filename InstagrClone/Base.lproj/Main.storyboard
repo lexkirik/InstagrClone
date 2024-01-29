@@ -17,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8m0-qq-SIp">
-                                <rect key="frame" x="52" y="167" width="289" height="34"/>
+                                <rect key="frame" x="52" y="108" width="289" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YG1-ve-n6C">
-                                <rect key="frame" x="52" y="235" width="289" height="34"/>
+                                <rect key="frame" x="52" y="176" width="289" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstagrClone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSp-qu-Lf8">
-                                <rect key="frame" x="52" y="76" width="289" height="59"/>
+                                <rect key="frame" x="52" y="17" width="289" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="yjI-cc-XfA"/>
                                 </constraints>
@@ -87,7 +87,7 @@
         <!--Upload-->
         <scene sceneID="1gW-yY-dUa">
             <objects>
-                <viewController id="x7R-oX-Lte" sceneMemberID="viewController">
+                <viewController id="x7R-oX-Lte" customClass="UploadViewController" customModule="InstagrClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WLv-Om-96m">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,10 +100,44 @@
             </objects>
             <point key="canvasLocation" x="581" y="-61"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="8IZ-QK-9eg">
+            <objects>
+                <viewController id="Qet-3K-8Bu" customClass="SettingsViewController" customModule="InstagrClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yEs-bE-PW0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gj3-RC-5VM">
+                                <rect key="frame" x="144" y="351" width="105" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutClicked:" destination="Qet-3K-8Bu" eventType="touchUpInside" id="e3q-UT-sgw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5ep-A1-5v1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gj3-RC-5VM" firstAttribute="centerX" secondItem="yEs-bE-PW0" secondAttribute="centerX" id="jsu-w3-Xt5"/>
+                            <constraint firstItem="gj3-RC-5VM" firstAttribute="leading" secondItem="5ep-A1-5v1" secondAttribute="leading" constant="144" id="p0g-3d-E5D"/>
+                            <constraint firstItem="gj3-RC-5VM" firstAttribute="top" secondItem="5ep-A1-5v1" secondAttribute="top" constant="351" id="rNn-5z-4Xb"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="s.circle" catalog="system" id="ymd-w1-ofr"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSignInVC" modalPresentationStyle="fullScreen" id="xKX-sL-pOT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vi-9E-odF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="583.96946564885491" y="623.94366197183103"/>
+        </scene>
         <!--Feed-->
         <scene sceneID="pjO-Id-hym">
             <objects>
-                <viewController id="rHA-te-ibN" sceneMemberID="viewController">
+                <viewController id="rHA-te-ibN" customClass="FeedViewController" customModule="InstagrClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zTi-BM-ud9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,6 +162,7 @@
                     <connections>
                         <segue destination="rHA-te-ibN" kind="relationship" relationship="viewControllers" id="FhA-ja-eJ9"/>
                         <segue destination="x7R-oX-Lte" kind="relationship" relationship="viewControllers" id="YHe-S4-hJs"/>
+                        <segue destination="Qet-3K-8Bu" kind="relationship" relationship="viewControllers" id="ciz-bW-K1j"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DB8-DS-yGU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -137,6 +172,7 @@
     </scenes>
     <resources>
         <image name="f.circle" catalog="system" width="128" height="123"/>
+        <image name="s.circle" catalog="system" width="128" height="123"/>
         <image name="u.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
