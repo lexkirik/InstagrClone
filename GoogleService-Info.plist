@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDpCBMm2IsZd_etdcRjVb4pWNDVprFbqSM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>60535812130</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.akir.InstagrClone</string>
+	<key>PROJECT_ID</key>
+	<string>instagrclone-72c5f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>instagrclone-72c5f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:60535812130:ios:277bc2ae3389acbd139a7b</string>
+</dict>
+</plist>
