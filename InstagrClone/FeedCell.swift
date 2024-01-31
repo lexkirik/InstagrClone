@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedCell: UITableViewCell {
 
@@ -28,7 +29,13 @@ class FeedCell: UITableViewCell {
     }
 
     @IBAction func likeButtonClicked(_ sender: Any) {
+        let firestoreDatabase = Firestore.firestore()
         
+        if let likeCount = Int(likeCountLabel.text!) {
+            let likeStore = ["likes" : likeCount + 1] as [String : Any]
+            
+            firestoreDatabase.collection("Posts").document(documentIDLabel.text!).setData(likeStore, merge: true)
+        }
     }
     
     
