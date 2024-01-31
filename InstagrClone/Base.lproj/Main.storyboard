@@ -237,6 +237,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVD-F2-Md9">
+                                                    <rect key="frame" x="312" y="21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="HyZ-ce-FKD" firstAttribute="top" secondItem="uto-i7-33B" secondAttribute="topMargin" constant="-11" id="47a-yH-93T"/>
@@ -245,17 +251,20 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="QYy-4K-oRt" secondAttribute="trailing" constant="10" id="AYD-GG-p9K"/>
                                                 <constraint firstItem="eBJ-zm-kap" firstAttribute="top" secondItem="E3y-S6-vYN" secondAttribute="bottom" constant="7" id="RZQ-za-ui2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="eBJ-zm-kap" secondAttribute="bottom" constant="-11" id="V32-VI-BDm"/>
+                                                <constraint firstItem="QYy-4K-oRt" firstAttribute="top" secondItem="oVD-F2-Md9" secondAttribute="bottom" constant="8" id="V41-wC-fHz"/>
                                                 <constraint firstItem="HyZ-ce-FKD" firstAttribute="trailing" secondItem="eBJ-zm-kap" secondAttribute="trailing" id="XAA-OG-Cfr"/>
                                                 <constraint firstItem="HyZ-ce-FKD" firstAttribute="leading" secondItem="uto-i7-33B" secondAttribute="leadingMargin" id="XaA-z1-tpH"/>
                                                 <constraint firstItem="0Nk-Cm-Win" firstAttribute="leading" secondItem="uto-i7-33B" secondAttribute="leadingMargin" constant="10" id="dOD-r5-cFu"/>
                                                 <constraint firstItem="QYy-4K-oRt" firstAttribute="leading" secondItem="uto-i7-33B" secondAttribute="leadingMargin" constant="5" id="hcr-hg-msI"/>
                                                 <constraint firstItem="E3y-S6-vYN" firstAttribute="leading" secondItem="0Nk-Cm-Win" secondAttribute="trailing" constant="8" id="jlp-YO-Tnt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oVD-F2-Md9" secondAttribute="trailing" constant="19" id="mSV-uZ-mUb"/>
                                                 <constraint firstItem="0Nk-Cm-Win" firstAttribute="top" secondItem="QYy-4K-oRt" secondAttribute="bottom" constant="10" id="nn8-cx-iWb"/>
                                                 <constraint firstItem="QYy-4K-oRt" firstAttribute="top" secondItem="HyZ-ce-FKD" secondAttribute="bottom" constant="5" id="vst-9E-Heg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentText" destination="eBJ-zm-kap" id="roV-sA-qR0"/>
+                                            <outlet property="documentIDLabel" destination="oVD-F2-Md9" id="REL-jK-2wH"/>
                                             <outlet property="likeCountLabel" destination="E3y-S6-vYN" id="KXJ-BT-N65"/>
                                             <outlet property="userEmailLabel" destination="HyZ-ce-FKD" id="grx-lp-oqR"/>
                                             <outlet property="userImageView" destination="QYy-4K-oRt" id="6qt-uF-bRD"/>
