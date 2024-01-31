@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B447BE2B6A179200ED61F2 /* FeedCell.swift */; };
 		52EEAE272B679F0200CFA08F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEAE262B679F0200CFA08F /* FeedViewController.swift */; };
 		52EEAE292B679F1E00CFA08F /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEAE282B679F1E00CFA08F /* UploadViewController.swift */; };
 		52EEAE2B2B679F2E00CFA08F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEAE2A2B679F2E00CFA08F /* SettingsViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52B447BE2B6A179200ED61F2 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		52EEAE262B679F0200CFA08F /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		52EEAE282B679F1E00CFA08F /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		52EEAE2A2B679F2E00CFA08F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				52EEAE262B679F0200CFA08F /* FeedViewController.swift */,
 				52EEAE282B679F1E00CFA08F /* UploadViewController.swift */,
 				52EEAE2A2B679F2E00CFA08F /* SettingsViewController.swift */,
+				52B447BE2B6A179200ED61F2 /* FeedCell.swift */,
 				52EEB5CE2B6789CB00655666 /* Main.storyboard */,
 				52EEB5D12B6789CE00655666 /* Assets.xcassets */,
 				52EEB5D32B6789CE00655666 /* LaunchScreen.storyboard */,
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */,
 				52EEB5CD2B6789CB00655666 /* ViewController.swift in Sources */,
 				52EEAE292B679F1E00CFA08F /* UploadViewController.swift in Sources */,
 				52EEB5C92B6789CB00655666 /* AppDelegate.swift in Sources */,
