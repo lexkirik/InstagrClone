@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -65,7 +66,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.commentText.text = commentArray[indexPath.row]
         cell.likeCountLabel.text = String(likeArray[indexPath.row])
         cell.userEmailLabel.text = userEmailArray[indexPath.row]
-        cell.userImageView.image = UIImage(named: "upload.png")
+        cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         return cell
     }
 
