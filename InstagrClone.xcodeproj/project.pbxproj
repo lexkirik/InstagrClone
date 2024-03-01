@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52720C112B9153DC00D36BD4 /* PopupUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52720C102B9153DC00D36BD4 /* PopupUpload.swift */; };
 		52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B447BE2B6A179200ED61F2 /* FeedCell.swift */; };
 		52B447C22B6A286900ED61F2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 52B447C12B6A286900ED61F2 /* SDWebImage */; };
 		52B447C42B6A286900ED61F2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52B447C32B6A286900ED61F2 /* SDWebImageMapKit */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52720C102B9153DC00D36BD4 /* PopupUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUpload.swift; sourceTree = "<group>"; };
 		52B447BE2B6A179200ED61F2 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		52EEAE262B679F0200CFA08F /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		52EEAE282B679F1E00CFA08F /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				52EEAE282B679F1E00CFA08F /* UploadViewController.swift */,
 				52EEAE2A2B679F2E00CFA08F /* SettingsViewController.swift */,
 				52B447BE2B6A179200ED61F2 /* FeedCell.swift */,
+				52720C102B9153DC00D36BD4 /* PopupUpload.swift */,
 				52EEB5CE2B6789CB00655666 /* Main.storyboard */,
 				52EEB5D12B6789CE00655666 /* Assets.xcassets */,
 				52EEB5D32B6789CE00655666 /* LaunchScreen.storyboard */,
@@ -183,6 +186,7 @@
 				52EEAE292B679F1E00CFA08F /* UploadViewController.swift in Sources */,
 				52EEB5C92B6789CB00655666 /* AppDelegate.swift in Sources */,
 				52EEAE272B679F0200CFA08F /* FeedViewController.swift in Sources */,
+				52720C112B9153DC00D36BD4 /* PopupUpload.swift in Sources */,
 				52EEB5CB2B6789CB00655666 /* SceneDelegate.swift in Sources */,
 				52EEAE2B2B679F2E00CFA08F /* SettingsViewController.swift in Sources */,
 			);

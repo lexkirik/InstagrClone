@@ -13,7 +13,7 @@ import FirebaseStorage
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
 
-    
+    var popup = Popup()
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentText: UITextField!
@@ -25,6 +25,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gestureRecognizer)
+        
+        
     }
     
     @objc func chooseImage() {
@@ -66,6 +68,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
         
+        view.addSubview(popup)
+        
         let storage = Storage.storage()
         let storageReference = storage.reference()
         
@@ -96,6 +100,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     self.imageView.image = UIImage(named: "upload.png")
                                     self.commentText.text = ""
                                     self.tabBarController?.selectedIndex = 0
+                                    self.popupClose()
                                 }
                             })
                         }
@@ -105,6 +110,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    @objc func popupClose() {
+        popup.removeFromSuperview()
+    }
 
     func makeAlert(titleInput: String, messageInput: String) {
         let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
