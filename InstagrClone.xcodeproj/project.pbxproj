@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525019962B97C55B0022878B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525019952B97C55B0022878B /* SnapKit */; };
+		525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 525019972B97C55B0022878B /* SnapKit-Dynamic */; };
 		52720C112B9153DC00D36BD4 /* PopupUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52720C102B9153DC00D36BD4 /* PopupUpload.swift */; };
 		52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B447BE2B6A179200ED61F2 /* FeedCell.swift */; };
 		52B447C22B6A286900ED61F2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 52B447C12B6A286900ED61F2 /* SDWebImage */; };
@@ -52,6 +54,8 @@
 				52EEB5F62B678D1900655666 /* FirebaseFirestore in Frameworks */,
 				52EEB5DE2B678D1900655666 /* FirebaseAnalytics in Frameworks */,
 				52EEB5EA2B678D1900655666 /* FirebaseAuth in Frameworks */,
+				525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */,
+				525019962B97C55B0022878B /* SnapKit in Frameworks */,
 				52EEB6102B678D1900655666 /* FirebaseStorage in Frameworks */,
 				52B447C42B6A286900ED61F2 /* SDWebImageMapKit in Frameworks */,
 				52B447C22B6A286900ED61F2 /* SDWebImage in Frameworks */,
@@ -120,6 +124,8 @@
 				52EEB60F2B678D1900655666 /* FirebaseStorage */,
 				52B447C12B6A286900ED61F2 /* SDWebImage */,
 				52B447C32B6A286900ED61F2 /* SDWebImageMapKit */,
+				525019952B97C55B0022878B /* SnapKit */,
+				525019972B97C55B0022878B /* SnapKit-Dynamic */,
 			);
 			productName = InstagrClone;
 			productReference = 52EEB5C52B6789CB00655666 /* InstagrClone.app */;
@@ -152,6 +158,7 @@
 			packageReferences = (
 				52EEB5DC2B678D1900655666 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				52B447C02B6A286900ED61F2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 52EEB5C62B6789CB00655666 /* Products */;
 			projectDirPath = "";
@@ -415,6 +422,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 		52B447C02B6A286900ED61F2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -434,6 +449,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		525019952B97C55B0022878B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		525019972B97C55B0022878B /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
 		52B447C12B6A286900ED61F2 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 52B447C02B6A286900ED61F2 /* XCRemoteSwiftPackageReference "SDWebImage" */;

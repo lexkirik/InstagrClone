@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class Popup: UIView {
     
@@ -58,13 +59,6 @@ class Popup: UIView {
         stack.distribution = .fillEqually
         return stack
     }()
-    
-    private lazy var stack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [textLabel, stackButton])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        return stack
-    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,19 +67,24 @@ class Popup: UIView {
         self.frame = UIScreen.main.bounds
         
         self.addSubview(container)
-        container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
-        container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.25).isActive = true
-        
-        container.addSubview(stack)
-        stack.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
-        stack.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
-        stack.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.5).isActive = true
-        stack.widthAnchor.constraint(equalTo: container.widthAnchor).isActive = true
-        stack.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
-        stackButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor, constant: 10).isActive = true
-        stackButton.trailingAnchor.constraint(equalTo: stack.trailingAnchor, constant: -10).isActive = true
+        container.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(180)
+            make.width.equalTo(250)
+        }
+        container.addSubview(textLabel)
+        textLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(40)
+            make.left.equalToSuperview().inset(20)
+        }
+
+        container.addSubview(stackButton)
+        stackButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(40)
+            make.left.equalToSuperview().inset(20)
+        }
     }
     
     required init?(coder: NSCoder) {
