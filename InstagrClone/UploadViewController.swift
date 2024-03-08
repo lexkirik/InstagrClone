@@ -13,7 +13,7 @@ import FirebaseStorage
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
 
-    var popup = Popup()
+    
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentText: UITextField!
@@ -59,15 +59,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 DispatchQueue.main.async {
                     self.imageView.image = image
                 }
-//                result.itemProvider.loadFileRepresentation(forTypeIdentifier: "publc.image") { <#URL?#>, <#Error?#> in
-//                    <#code#>
-//                }
+
             }
         }
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        
+        var popup = PopupUploadView()
         view.addSubview(popup)
         
         let storage = Storage.storage()
@@ -96,11 +94,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                             firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { error in
                                 if error != nil {
                                     self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                    self.popupClose(popup: popup)
                                 } else {
                                     self.imageView.image = UIImage(named: "upload.png")
                                     self.commentText.text = ""
                                     self.tabBarController?.selectedIndex = 0
-                                    self.popupClose()
+                                    self.popupClose(popup: popup)
                                 }
                             })
                         }
@@ -110,7 +109,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
-    @objc func popupClose() {
+    @objc func popupClose(popup: PopupUploadView) {
         popup.removeFromSuperview()
     }
 

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class Popup: UIView {
+class PopupUploadView: UIView {
     
     private let textLabel: UILabel = {
         let label = UILabel()
