@@ -10,14 +10,20 @@ import Photos
 import PhotosUI
 import Firebase
 import FirebaseStorage
+import BSImagePicker
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    
+    private var selectedImages: [UIImage] = []
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentText: UITextField!
     @IBOutlet weak var uploadButton: UIButton!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var commentCollage: UITextField!
+    @IBOutlet weak var uploadCollage: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,19 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gestureRecognizer)
         
-        
+        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        collectionView.collectionViewLayout = flowLayout
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "collage")
+        collectionView.isUserInteractionEnabled = true
+        let gestureCollection = UITapGestureRecognizer(target: self, action: #selector(selectImages))
+        collectionView.addGestureRecognizer(gestureCollection)
     }
     
     @objc func chooseImage() {
@@ -36,19 +54,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let imagePicker = PHPickerViewController(configuration: imageCongiguration)
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
-        
-        // imagePicker using .photoLibrary will be deprecated soon
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self
-//        imagePicker.sourceType = .photoLibrary
-//        present(imagePicker, animated: true, completion: nil)
     }
-    
-    // imagePicker using .photoLibrary will be deprecated soon
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        imageView.image = info[.originalImage] as? UIImage
-//        self.dismiss(animated: true, completion: nil)
-//    }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
@@ -96,7 +102,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
                                     self.popupClose(popup: popup)
                                 } else {
-                                    self.imageView.image = UIImage(named: "upload.png")
+                                    self.imageView.image = UIImage(named: "single.png")
                                     self.commentText.text = ""
                                     self.tabBarController?.selectedIndex = 0
                                     self.popupClose(popup: popup)
@@ -118,5 +124,64 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return selectedImages.count
+    }
+     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data: UIImage = selectedImages[indexPath.item]
+        let cell: ImageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collage", for: indexPath) as! ImageCell
+        cell.image.image = data
+        return cell
+    }
+    
+    @objc private func selectImages() {
+        let imagePicker = ImagePickerController()
+        presentImagePicker(imagePicker, select: { (asset) in
+        }, deselect: { (asset) in
+             
+        }, cancel: { (assets) in
+             
+        }, finish: { (assets) in
+             
+            self.selectedImages = []
+            let options: PHImageRequestOptions = PHImageRequestOptions()
+            options.deliveryMode = .highQualityFormat
+ 
+            for asset in assets {
+                PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: options) { (image, info) in
+                    self.selectedImages.append(image!)
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+    }
+    
+    @IBAction func uploadCollageClicked(_ sender: Any) {
+        print("tapped button upload collage")
+    }
+    
+}
+
+class ImageCell: UICollectionViewCell {
+    var image: UIImageView!
+ 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+    }
+     
+    private func setupViews() {
+        image = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        addSubview(image)
     }
 }

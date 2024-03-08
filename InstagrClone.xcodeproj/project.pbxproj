@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		525019962B97C55B0022878B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525019952B97C55B0022878B /* SnapKit */; };
 		525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 525019972B97C55B0022878B /* SnapKit-Dynamic */; };
+		526C2C022B9B128200F5537A /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 526C2C012B9B128200F5537A /* BSImagePicker */; };
 		52720C112B9153DC00D36BD4 /* PopupUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52720C102B9153DC00D36BD4 /* PopupUploadView.swift */; };
 		52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B447BE2B6A179200ED61F2 /* FeedCell.swift */; };
 		52B447C22B6A286900ED61F2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 52B447C12B6A286900ED61F2 /* SDWebImage */; };
@@ -52,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EEB5F62B678D1900655666 /* FirebaseFirestore in Frameworks */,
+				526C2C022B9B128200F5537A /* BSImagePicker in Frameworks */,
 				52EEB5DE2B678D1900655666 /* FirebaseAnalytics in Frameworks */,
 				52EEB5EA2B678D1900655666 /* FirebaseAuth in Frameworks */,
 				525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */,
@@ -126,6 +128,7 @@
 				52B447C32B6A286900ED61F2 /* SDWebImageMapKit */,
 				525019952B97C55B0022878B /* SnapKit */,
 				525019972B97C55B0022878B /* SnapKit-Dynamic */,
+				526C2C012B9B128200F5537A /* BSImagePicker */,
 			);
 			productName = InstagrClone;
 			productReference = 52EEB5C52B6789CB00655666 /* InstagrClone.app */;
@@ -159,6 +162,7 @@
 				52EEB5DC2B678D1900655666 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				52B447C02B6A286900ED61F2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				526C2C002B9B128200F5537A /* XCRemoteSwiftPackageReference "BSImagePicker" */,
 			);
 			productRefGroup = 52EEB5C62B6789CB00655666 /* Products */;
 			projectDirPath = "";
@@ -430,6 +434,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		526C2C002B9B128200F5537A /* XCRemoteSwiftPackageReference "BSImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mikaoj/BSImagePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.1;
+			};
+		};
 		52B447C02B6A286900ED61F2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -458,6 +470,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 525019942B97C55B0022878B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		526C2C012B9B128200F5537A /* BSImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 526C2C002B9B128200F5537A /* XCRemoteSwiftPackageReference "BSImagePicker" */;
+			productName = BSImagePicker;
 		};
 		52B447C12B6A286900ED61F2 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
