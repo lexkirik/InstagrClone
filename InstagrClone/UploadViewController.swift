@@ -32,12 +32,13 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         imageView.addGestureRecognizer(gestureRecognizer)
         
+        let collectionViewWidth = collectionView?.frame.width
+        
+        let itemWidth = collectionViewWidth!/3 - 1
         let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        flowLayout.minimumLineSpacing = 1
+        flowLayout.minimumInteritemSpacing = 1
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         collectionView.collectionViewLayout = flowLayout
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -71,48 +72,13 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        var popup = PopupUploadView()
-        view.addSubview(popup)
-        
-        let storage = Storage.storage()
-        let storageReference = storage.reference()
-        
-        let mediaFolder = storageReference.child("media")
-        
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            let uuid = UUID().uuidString
-            let imageReference = mediaFolder.child("\(uuid).jpg")
-            imageReference.putData(data, metadata: nil) { metadata, error in
-                
-                if error != nil {
-                    self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
-                } else {
-                    imageReference.downloadURL { url, error in
-                        
-                        if error == nil {
-                            let imageURL = url?.absoluteString
-                            
-                            //database
-                            let firestoreDatabase = Firestore.firestore()
-                            var firestoreReference: DocumentReference? = nil
-                            let firestorePost = ["imageURL" : imageURL!, "postedBy" : Auth.auth().currentUser!.email!, "postComent" : self.commentText.text!, "date" : FieldValue.serverTimestamp(), "likes" : 0] as [String : Any]
-                            
-                            firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { error in
-                                if error != nil {
-                                    self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
-                                    self.popupClose(popup: popup)
-                                } else {
-                                    self.imageView.image = UIImage(named: "single.png")
-                                    self.commentText.text = ""
-                                    self.tabBarController?.selectedIndex = 0
-                                    self.popupClose(popup: popup)
-                                }
-                            })
-                        }
-                    }
-                }
-            }
-        }
+        let imageLoader = ImageLoader()
+        imageLoader.imageView = imageView
+        imageLoader.commentText = commentText
+        imageLoader.popup = PopupUploadView()
+        view.addSubview(imageLoader.popup)
+        imageLoader.upload()
+        imageView.image = UIImage(named: "single.png")
     }
     
     @objc func popupClose(popup: PopupUploadView) {
@@ -165,7 +131,7 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     
 }
 
-class ImageCell: UICollectionViewCell {
+private class ImageCell: UICollectionViewCell {
     var image: UIImageView!
  
     override init(frame: CGRect) {
@@ -179,7 +145,7 @@ class ImageCell: UICollectionViewCell {
     }
      
     private func setupViews() {
-        image = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         addSubview(image)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523892E72BA39E39008255C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523892E62BA39E39008255C7 /* ImageLoader.swift */; };
 		525019962B97C55B0022878B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525019952B97C55B0022878B /* SnapKit */; };
 		525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 525019972B97C55B0022878B /* SnapKit-Dynamic */; };
 		526C2C022B9B128200F5537A /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 526C2C012B9B128200F5537A /* BSImagePicker */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		523892E62BA39E39008255C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		52720C102B9153DC00D36BD4 /* PopupUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUploadView.swift; sourceTree = "<group>"; };
 		52B447BE2B6A179200ED61F2 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		52EEAE262B679F0200CFA08F /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				52EEB5D32B6789CE00655666 /* LaunchScreen.storyboard */,
 				52EEB5D62B6789CE00655666 /* Info.plist */,
 				52EEB6132B6796AA00655666 /* GoogleService-Info.plist */,
+				523892E62BA39E39008255C7 /* ImageLoader.swift */,
 			);
 			path = InstagrClone;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				52EEAE292B679F1E00CFA08F /* UploadViewController.swift in Sources */,
 				52EEB5C92B6789CB00655666 /* AppDelegate.swift in Sources */,
 				52EEAE272B679F0200CFA08F /* FeedViewController.swift in Sources */,
+				523892E72BA39E39008255C7 /* ImageLoader.swift in Sources */,
 				52720C112B9153DC00D36BD4 /* PopupUploadView.swift in Sources */,
 				52EEB5CB2B6789CB00655666 /* SceneDelegate.swift in Sources */,
 				52EEAE2B2B679F2E00CFA08F /* SettingsViewController.swift in Sources */,
