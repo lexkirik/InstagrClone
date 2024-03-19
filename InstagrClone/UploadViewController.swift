@@ -72,13 +72,36 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
+        let popup = PopupUploadView()
+        view.addSubview(popup)
         let imageLoader = ImageLoader()
-        imageLoader.imageView = imageView
-        imageLoader.commentText = commentText
-        imageLoader.popup = PopupUploadView()
-        view.addSubview(imageLoader.popup)
-        imageLoader.upload()
-        imageView.image = UIImage(named: "single.png")
+        
+        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
+            imageLoader.imageReference.putData(data, metadata: nil) { metadata, error in
+                
+                if error != nil {
+                    self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                } else {
+                    imageLoader.imageReference.downloadURL { url, error in
+                        if error == nil {
+                            let imageURL = url!.absoluteString
+                            let firestorePost = imageLoader.setPost(imageURL: imageURL, postedBy: Auth.auth().currentUser!.email ?? "", postComment: self.commentText.text ?? "", date: FieldValue.serverTimestamp(), likes: 0)
+                            var firestoreReference = imageLoader.firestoreReference
+                            firestoreReference = imageLoader.firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { error in
+                                if error != nil {
+                                    self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                } else {
+                                    self.imageView.image = UIImage(named: "single.png")
+                                    self.commentText.text = ""
+                                    self.tabBarController?.selectedIndex = 0
+                                }
+                                self.popupClose(popup: popup)
+                            })
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @objc func popupClose(popup: PopupUploadView) {
