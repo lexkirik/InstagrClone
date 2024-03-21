@@ -34,7 +34,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         fireStoreDatabase.collection("Posts").order(by: "date", descending: true)
             .addSnapshotListener { snapshot, error in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "downloading error in Feed")
             } else {
                 if snapshot!.isEmpty != true && snapshot != nil {
                     

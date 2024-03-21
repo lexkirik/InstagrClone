@@ -11,7 +11,5 @@ import FirebaseStorage
 
 protocol ImageLoaderProtocol {
     
-    var imageReference: StorageReference {get}
-    var firestoreDatabase: Firestore {get}
-    func setPost(imageURL: String, postedBy: String, postComment: String, date: FieldValue, likes: Int) -> [String : Any]
+    func composePost(data: Data, postedBy: String, postComment: String, date: FieldValue, likes: Int, completion: (Bool) -> ())
 }
