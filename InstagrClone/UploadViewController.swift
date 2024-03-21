@@ -76,15 +76,20 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         view.addSubview(popup)
         let imageLoader = ImageLoader()
         
-        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { _ in
-                if false {
-                    
-                } else {
+        if let data = imageView.image?.jpegData(compressionQuality: 0.5) {            
+            imageLoader.composePost(data: data,
+                                    postedBy: Auth.auth().currentUser!.email!,
+                                    postComment: self.commentText.text!,
+                                    date: FieldValue.serverTimestamp(),
+                                    likes: 0) { success in
+                if success {
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
                     self.tabBarController?.selectedIndex = 0
+                } else {
+                    self.makeAlert(titleInput: "Error", messageInput: "Some error description")
                 }
+                
                 self.popupClose(popup: popup)
             }
         }
