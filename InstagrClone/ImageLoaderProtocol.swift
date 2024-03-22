@@ -11,5 +11,5 @@ import FirebaseStorage
 
 protocol ImageLoaderProtocol {
     
-    func composePost(data: Data, postedBy: String, postComment: String, date: FieldValue, likes: Int, completion: (Bool) -> ())
+    func composePost(data: Data, postedBy: String, postComment: String, date: FieldValue, likes: Int, completion:  @escaping (_ success: Bool) -> ())
 }

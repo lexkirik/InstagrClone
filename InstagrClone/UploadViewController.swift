@@ -72,22 +72,30 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        let popup = PopupUploadView()
-        view.addSubview(popup)
+        var popup = PopupUploadView()
+        popupShow(popup: popup)
         let imageLoader = ImageLoader()
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { _ in
-                if false {
-                    
-                } else {
+            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { success in
+                if success {
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
                     self.tabBarController?.selectedIndex = 0
+                } else {
+                    self.makeAlert(titleInput: "Error", messageInput: "Error")
                 }
                 self.popupClose(popup: popup)
             }
         }
+    }
+    
+    func popupShow(popup: PopupUploadView) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { () -> Void in
+            UIView.animate(withDuration: 1.0, animations: { () -> Void in
+                self.view.addSubview(popup)
+            })
+        })
     }
     
     @objc func popupClose(popup: PopupUploadView) {
