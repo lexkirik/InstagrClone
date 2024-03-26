@@ -26,14 +26,18 @@ final class InstagrCloneTests: XCTestCase {
     }
 
     func testExample() throws {
-        var post = imageLoader.setPost(imageURL: "", postedBy: "", postComment: "", date: FieldValue.serverTimestamp(), likes: 1)
+        var post: () = imageLoader.composePost(data: <#Data#>, postedBy: "", postComment: "", date: FieldValue.serverTimestamp(), likes: 1) { error in
+            
+        }
         XCTAssertNoThrow(post)
     }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         measure {
-            imageLoader.setPost(imageURL: "", postedBy: "", postComment: "", date: FieldValue.serverTimestamp(), likes: 1)
+            imageLoader.composePost(data: <#Data#>, postedBy: "", postComment: "", date: FieldValue.serverTimestamp(), likes: 1) { error in
+                <#code#>
+            }
         }
     }
 

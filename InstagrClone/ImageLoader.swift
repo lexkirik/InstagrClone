@@ -14,12 +14,12 @@ class ImageLoader: ImageLoaderProtocol {
     private let firestoreDatabase = Firestore.firestore()
     private var firestoreReference: DocumentReference? = nil
     
-    func composePost(data: Data, postedBy: String, postComment: String, date: FieldValue, likes: Int, completion:  @escaping (_ success: Bool) -> ())  {
+    func composePost(data: Data, postedBy: String, postComment: String, date: FieldValue, likes: Int, completion:  @escaping (_ error: ImageLoaderError) -> ())  {
     
                 imageReference.putData(data, metadata: nil) { metadata, error in
     
                     if error != nil {
-                        completion(false)
+                        completion(.failedPuttingDataToFirebase)
                     } else {
                         self.imageReference.downloadURL { url, error in
                             if error == nil {
@@ -31,13 +31,13 @@ class ImageLoader: ImageLoaderProtocol {
     
                                 self.firestoreReference = self.firestoreDatabase.collection("Posts").addDocument(data: post, completion: { _ in
                                     if error != nil {
-                                        completion(false)
+                                        completion(.failedDownloadingDataFromFirebase)
                                     } else {
-                                        completion(true)
+                                        completion(.noError)
                                     }
                                 })
                             } else {
-                                completion(false)
+                                completion(.failedComposingDataAsPost)
                             }
                         }
                     }

@@ -10,6 +10,7 @@
 		523892E72BA39E39008255C7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523892E62BA39E39008255C7 /* ImageLoader.swift */; };
 		525019962B97C55B0022878B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 525019952B97C55B0022878B /* SnapKit */; };
 		525019982B97C55B0022878B /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 525019972B97C55B0022878B /* SnapKit-Dynamic */; };
+		525761D62BB1E87100E7BAA3 /* ImageLoaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525761D52BB1E87100E7BAA3 /* ImageLoaderError.swift */; };
 		526C2C022B9B128200F5537A /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 526C2C012B9B128200F5537A /* BSImagePicker */; };
 		52720C112B9153DC00D36BD4 /* PopupUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52720C102B9153DC00D36BD4 /* PopupUploadView.swift */; };
 		5278A4042BAA0E92004A10A0 /* InstagrCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5278A4032BAA0E92004A10A0 /* InstagrCloneTests.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		523892E62BA39E39008255C7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		525761D52BB1E87100E7BAA3 /* ImageLoaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderError.swift; sourceTree = "<group>"; };
 		52720C102B9153DC00D36BD4 /* PopupUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupUploadView.swift; sourceTree = "<group>"; };
 		5278A3F42BA9EA49004A10A0 /* ImageLoaderProtocol.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageLoaderProtocol.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5278A4012BAA0E92004A10A0 /* InstagrCloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagrCloneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +153,7 @@
 				52EEB6132B6796AA00655666 /* GoogleService-Info.plist */,
 				523892E62BA39E39008255C7 /* ImageLoader.swift */,
 				5278A40A2BAA0EC1004A10A0 /* ImageLoaderProtocol.swift */,
+				525761D52BB1E87100E7BAA3 /* ImageLoaderError.swift */,
 			);
 			path = InstagrClone;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525761D62BB1E87100E7BAA3 /* ImageLoaderError.swift in Sources */,
 				52B447BF2B6A179200ED61F2 /* FeedCell.swift in Sources */,
 				52EEB5CD2B6789CB00655666 /* ViewController.swift in Sources */,
 				52EEAE292B679F1E00CFA08F /* UploadViewController.swift in Sources */,

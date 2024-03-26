@@ -77,8 +77,8 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
         let imageLoader = ImageLoader()
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { success in
-                if success {
+            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { error in
+                if error == .noError {
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
                     self.tabBarController?.selectedIndex = 0
@@ -88,6 +88,12 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
                 self.popupClose(popup: popup)
             }
         }
+    }
+    
+    func noDownloadingError() {
+        self.imageView.image = UIImage(named: "single.png")
+        self.commentText.text = ""
+        self.tabBarController?.selectedIndex = 0
     }
     
     func popupShow(popup: PopupUploadView) {
