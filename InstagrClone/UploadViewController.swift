@@ -72,40 +72,36 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        var popup = PopupUploadView()
-        popupShow(popup: popup)
+        let popup = PopupUploadView()
+        var popup1 = popup
+        popup1.self = popup
         let imageLoader = ImageLoader()
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
-            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { error in
-                if error == .noError {
+            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { result in
+                if result == .success(.success) {
+                    self.popupShow(popup: popup1)
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
-                    self.tabBarController?.selectedIndex = 0
                 } else {
                     self.makeAlert(titleInput: "Error", messageInput: "Error")
                 }
-                self.popupClose(popup: popup)
+                self.popupClose(popup: popup1)
             }
         }
     }
     
-    func noDownloadingError() {
-        self.imageView.image = UIImage(named: "single.png")
-        self.commentText.text = ""
-        self.tabBarController?.selectedIndex = 0
-    }
-    
     func popupShow(popup: PopupUploadView) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { () -> Void in
-            UIView.animate(withDuration: 1.0, animations: { () -> Void in
-                self.view.addSubview(popup)
-            })
-        })
+        popup.removeFromSuperview()
+        self.view.addSubview(popup)
     }
     
     @objc func popupClose(popup: PopupUploadView) {
-        popup.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { () -> Void in
+                    UIView.animate(withDuration: 1.0, animations: { () -> Void in
+                        popup.removeFromSuperview()
+                    })
+                })
     }
 
     func makeAlert(titleInput: String, messageInput: String) {
@@ -149,9 +145,25 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadCollageClicked(_ sender: Any) {
-        print("tapped button upload collage")
+        let imageCollage = collectionView.asImage()
+       
+        let popup = PopupUploadView()
+        var popup1 = popup
+        popup1.self = popup
+        let imageLoader = ImageLoader()
+        
+        if let data = imageCollage.jpegData(compressionQuality: 0.5) {
+            imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { result in
+                if result == .success(.success) {
+                    self.popupShow(popup: popup1)
+                    self.commentText.text = ""
+                } else {
+                    self.makeAlert(titleInput: "Error", messageInput: "Error")
+                }
+                self.popupClose(popup: popup1)
+            }
+        }
     }
-    
 }
 
 private class ImageCell: UICollectionViewCell {
@@ -172,5 +184,14 @@ private class ImageCell: UICollectionViewCell {
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         addSubview(image)
+    }
+}
+
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
     }
 }
