@@ -73,20 +73,18 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
         let popup = PopupUploadView()
-        var popup1 = popup
-        popup1.self = popup
         let imageLoader = ImageLoader()
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
             imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { result in
                 if result == .success(.success) {
-                    self.popupShow(popup: popup1)
+                    self.popupShow(popup: popup)
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
                 } else {
-                    self.makeAlert(titleInput: "Error", messageInput: "Error")
+                    ImageLoaderResult.error(.failedRefreshingAfterPosting)
                 }
-                self.popupClose(popup: popup1)
+                self.popupClose(popup: popup)
             }
         }
     }
@@ -187,7 +185,7 @@ private class ImageCell: UICollectionViewCell {
     }
 }
 
-extension UIView {
+private extension UIView {
     func asImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image { rendererContext in

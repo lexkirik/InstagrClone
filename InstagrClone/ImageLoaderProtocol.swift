@@ -23,6 +23,7 @@ enum ImageLoaderResult: Error, Equatable {
         case failedPuttingDataToFirebase
         case failedDownloadingDataFromFirebase
         case failedComposingDataAsPost
+        case failedRefreshingAfterPosting
         case unknown
         
         var errorDescription: String {
@@ -35,11 +36,13 @@ enum ImageLoaderResult: Error, Equatable {
                 return NSLocalizedString("Failed to download data", comment: "Failed to download data from Firebase")
             case .unknown:
                 return NSLocalizedString("Unknown error", comment: "Unknown error with uploading data")
+            case .failedRefreshingAfterPosting:
+                return NSLocalizedString("Refreshing error", comment: "Error with refreshing upload view after posting")
             }
         }
     }
     
-    enum ImageLoaderSuccess: LocalizedError {
+    enum ImageLoaderSuccess {
         case success
         
         var resultDescription: Any {
