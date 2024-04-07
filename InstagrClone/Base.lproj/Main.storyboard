@@ -147,7 +147,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Upload collage"/>
                                 <connections>
-                                    <action selector="uploadButtonClicked:" destination="x7R-oX-Lte" eventType="touchUpInside" id="4qO-S6-srj"/>
                                     <action selector="uploadCollageClicked:" destination="x7R-oX-Lte" eventType="touchUpInside" id="BAt-L4-Hjh"/>
                                 </connections>
                             </button>
