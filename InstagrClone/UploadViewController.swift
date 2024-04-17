@@ -15,6 +15,7 @@ import BSImagePicker
 class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private var selectedImages: [UIImage] = []
+    private var popup: UIView?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentText: UITextField!
@@ -23,7 +24,6 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var commentCollage: UITextField!
     @IBOutlet weak var uploadCollage: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,34 +72,41 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        let popup = PopupUploadView()
         let imageLoader = ImageLoader()
         
         if let data = imageView.image?.jpegData(compressionQuality: 0.5) {
             imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { result in
                 if result == .success {
-                    self.popupShow(popup: popup)
+                    self.popupShow()
                     self.imageView.image = UIImage(named: "single.png")
                     self.commentText.text = ""
                 } else {
+                    // NOT HANDLED WARNING
                     ImageLoaderResult.error(.failedRefreshingAfterPosting)
                 }
-                self.popupClose(popup: popup)
+                self.popupCloseWithDelay()
             }
         }
     }
     
-    func popupShow(popup: PopupUploadView) {
-        popup.removeFromSuperview()
+    private func popupShow() {
+        self.removePopup()
+        
+        let popup = PopupUploadView()
         self.view.addSubview(popup)
+        self.popup = popup
     }
     
-    @objc func popupClose(popup: PopupUploadView) {
+    private func removePopup() {
+        self.popup?.removeFromSuperview()
+    }
+    
+    @objc private func popupCloseWithDelay() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1), execute: { () -> Void in
-                    UIView.animate(withDuration: 1.0, animations: { () -> Void in
-                        popup.removeFromSuperview()
-                    })
-                })
+            UIView.animate(withDuration: 1.0, animations: { () -> Void in
+                self.removePopup()
+            })
+        })
     }
 
     func makeAlert(titleInput: String, messageInput: String) {
@@ -144,21 +151,17 @@ class UploadViewController: UIViewController, PHPickerViewControllerDelegate, UI
     
     @IBAction func uploadCollageClicked(_ sender: Any) {
         let imageCollage = collectionView.asImage()
-       
-        let popup = PopupUploadView()
-        var popup1 = popup
-        popup1.self = popup
         let imageLoader = ImageLoader()
         
         if let data = imageCollage.jpegData(compressionQuality: 0.5) {
             imageLoader.composePost(data: data, postedBy: Auth.auth().currentUser!.email!, postComment: self.commentText.text!, date: FieldValue.serverTimestamp(), likes: 0) { result in
                 if result == .success {
-                    self.popupShow(popup: popup1)
+                    self.popupShow()
                     self.commentText.text = ""
                 } else {
                     self.makeAlert(titleInput: "Error", messageInput: "Error")
                 }
-                self.popupClose(popup: popup1)
+                self.popupCloseWithDelay()
             }
         }
     }

@@ -27,7 +27,7 @@ class PopupUploadView: UIView {
         button.tintColor = .white
         button.setTitle("OK", for: .normal)
         button.layer.cornerRadius = 16
-        button.addTarget(nil, action: #selector(UploadViewController.popupClose), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(PopupUploadView.close), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -38,7 +38,7 @@ class PopupUploadView: UIView {
         button.tintColor = .white
         button.setTitle("Cancel", for: .normal)
         button.layer.cornerRadius = 16
-        button.addTarget(nil, action: #selector(UploadViewController.popupClose), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(PopupUploadView.close), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -89,5 +89,9 @@ class PopupUploadView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func close() {
+        self.removeFromSuperview()
     }
 }
