@@ -33,7 +33,7 @@ class ImageLoader: ImageLoaderProtocol {
                                     if error != nil {
                                         completion(.error(.failedDownloadingDataFromFirebase))
                                     } else {
-                                        completion(.success(.success))
+                                        completion(.success)
                                     }
                                 })
                             } else {

@@ -15,7 +15,7 @@ protocol ImageLoaderProtocol {
 }
 
 enum ImageLoaderResult: Error, Equatable {
-    case success (ImageLoaderSuccess)
+    case success
     case error (ImageLoaderError)
     
     enum ImageLoaderError: LocalizedError {
@@ -38,17 +38,6 @@ enum ImageLoaderResult: Error, Equatable {
                 return NSLocalizedString("Unknown error", comment: "Unknown error with uploading data")
             case .failedRefreshingAfterPosting:
                 return NSLocalizedString("Refreshing error", comment: "Error with refreshing upload view after posting")
-            }
-        }
-    }
-    
-    enum ImageLoaderSuccess {
-        case success
-        
-        var resultDescription: Any {
-            switch self {
-                case .success:
-                    return true
             }
         }
     }
